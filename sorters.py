@@ -1,7 +1,7 @@
 class Bubble:
     def __init__(self, toSort):
-        self.TOSORT = toSort
-        self.used   = self.TOSORT
+        self.TOSORT = toSort[:]
+        self.used   = self.TOSORT[:]
         self.index  = 0
         self.sorted = sorted(self.TOSORT)
     def step(self):
