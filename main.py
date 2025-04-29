@@ -8,9 +8,9 @@ def drawArray(array:list, canvas):
     barWidth = int(width / len(array))
     a = 0
     for i in array:
-        xs = a * barWidth + 5
+        xs = a * barWidth + 1
         ys = height - (i * 10)
-        xe = (a+1) * barWidth - 5
+        xe = (a+1) * barWidth - 1
         ye = height
 
         canvas.create_rectangle(xs, ys, xe, ye, fill="blue")
