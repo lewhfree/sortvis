@@ -3,15 +3,16 @@ class Bubble:
         self.TOSORT = toSort
         self.used   = self.TOSORT
         self.index  = 0
-        self.sorted = self.TOSORT.sort()
-    def step():
+        self.sorted = sorted(self.TOSORT)
+    def step(self):
         if not self.sorted == self.used:
-            if self.index + 1 > len(self.used):
+            if self.index > len(self.used) - 2:
                 self.index = 0
             if self.used[self.index] > self.used[self.index+1]:
                 tmp = self.used[self.index]
                 self.used[self.index] = self.used[self.index + 1]
                 self.used[self.index + 1] = tmp
+            self.index += 1
             return False
         else:
             return True
