@@ -4,15 +4,15 @@ from time import sleep
 from random import shuffle
 from draw import *
 
-available = ""
+available = "  "
 for each in list(choices.keys()):
     available += each + "    "
 
 print("Available algorithms: ", available)
-choice = input("which sorting algorithm do you want to see? ").strip().lower()
+choice = input("Which algorithm? ").strip().lower()
 sorter = choices.get(choice)
 if not sorter:
-    print("invalid choice")
+    print("Invalid choice.")
     exit()
 
 maxnum = int(input("How many numbers to sort? "))
@@ -38,9 +38,10 @@ while True:
     newArr, idx, ddone = sorter.step()
     canvas.pack()
     root.update()
+    sleep(0.25)
     if ddone:
         drawArray(newArr, canvas, idx, ddone, maxnum)
         canvas.pack()
         root.update()
-        sleep(1)
+        sleep(1.5)
         exit()
