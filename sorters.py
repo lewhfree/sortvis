@@ -4,6 +4,7 @@ class Bubble:
         self.used   = self.TOSORT[:]
         self.index  = 0
         self.sorted = sorted(self.TOSORT)
+        self.done   = False
     def step(self):
         if not self.sorted == self.used:
             if self.index > len(self.used) - 2:
@@ -13,9 +14,9 @@ class Bubble:
                 self.used[self.index] = self.used[self.index + 1]
                 self.used[self.index + 1] = tmp
             self.index += 1
-            return self.used, self.index
+            return self.used, self.index, False
         else:
-            return self.used, self.index
+            return self.used, self.index, True
 
 class QSort:
     def __init__(self, toSort):
