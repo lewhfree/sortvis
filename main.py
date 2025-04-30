@@ -3,8 +3,9 @@ from sorters import *
 import time
 import random
 
+maxnum = 90
 
-def drawArray(array:list, canvas):
+def drawArray(array:list, canvas, index):
     canvas.delete('all')
     width = 500
     height = 500
@@ -12,30 +13,42 @@ def drawArray(array:list, canvas):
     a = 0
     for i in array:
         xs = a * barWidth + 1
-        ys = height - (i * 20)
+        ys = height - (i * (height // maxnum))
         xe = (a+1) * barWidth - 1
         ye = height
+        firstGreater = int(array[index] == array[index - 1]) 
 
-        canvas.create_rectangle(xs, ys, xe, ye, fill="blue")
+        if a==index:
+            if firstGreater:
+                fill = "red"
+            else:
+                fill = "green"
+        elif a==index-1:
+            if firstGreater:
+                fill = "green"
+            else:
+                fill = "red"
+        else:
+            fill = "blue"
+        canvas.create_rectangle(xs, ys, xe, ye, fill=fill)
         a += 1
 
 root = tk.Tk(screenName=None, baseName=None, className='Tk', useTk=True)
 canvas = tk.Canvas(root, width=500, height=500)
 canvas.pack()
 
-array = list(range(10))
+array = list(range(1, maxnum))
 random.shuffle(array)
-
-array = [1, 3, 5, 6, 2, 7, 9, 2]
 
 sorter = Bubble(array)
 
-drawArray(array, canvas)
+drawArray(array, canvas, 1)
 canvas.pack()
-
+newArr = array
+idx = 1
 while True:
-    newArr = sorter.step()
-    drawArray(newArr, canvas)
+    #time.sleep(0.01)
+    drawArray(newArr, canvas, idx)
+    newArr, idx = sorter.step()
     canvas.pack()
     root.update()
-    time.sleep(0.5)

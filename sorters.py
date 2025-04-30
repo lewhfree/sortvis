@@ -13,9 +13,9 @@ class Bubble:
                 self.used[self.index] = self.used[self.index + 1]
                 self.used[self.index + 1] = tmp
             self.index += 1
-            return self.used
+            return self.used, self.index
         else:
-            return self.used
+            return self.used, self.index
 
 class QSort:
     def __init__(self, toSort):
