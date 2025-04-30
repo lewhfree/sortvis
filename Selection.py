@@ -6,6 +6,10 @@ class Selection:
         self.scan = 1
         self.mini = 0
 
+    def __str__(self):
+        return """Selection sort is a easy algorithm.
+It compares each number with all following numbers and swaps if there is a smaller number.
+It has a best, worst, and average time complexity of O(n^2)"""
     def step(self):
 
         if self.index>= len(self.used):
