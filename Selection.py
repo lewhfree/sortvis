@@ -14,7 +14,7 @@ It has a best, worst, and average time complexity of O(n^2)"""
 
         if self.index>= len(self.used):
             return self.used, self.index - 1, True
-        for i in range(1):
+        for i in range(len(self.used)-self.index):
             if self.index >= len(self.used):
                 break
 
