@@ -20,14 +20,6 @@ class Bubble:
         else:
             return self.used, self.index, True
 
-class QSort:
-    def __init__(self, toSort):
-        self.TOSORT = toSort
-        self.used   = self.TOSORT
-
-    def step():
-        self.used = self.used
-
 class Bogo:
     def __init__(self, toSort):
         self.solved = sorted(toSort[:])
@@ -39,3 +31,25 @@ class Bogo:
         else:
             random.shuffle(self.used)
             return self.used, -1, False
+
+class Selection:
+    def __init__(self, toSort):
+        self.solved = sorted(toSort[:])
+        self.used   = toSort[:]
+        self.index  = 0
+        self.sortedIndex = 0
+
+    def step(self):
+        i = 0
+        for a in self.used[self.index:]:
+            if a < self.used[i]:
+                self.used.insert(0, a)
+                self.used.pop(i)
+            i += 1
+        
+        self.sortedIndex += 1
+
+        if self.solved == self.used:
+            return self.used, self.sortedIndex, True
+        else:
+            return self.used, self.sortedIndex, False
