@@ -15,6 +15,8 @@ if not sorter:
     print("Invalid choice.")
     exit()
 
+delay = delays.get(choice)
+
 maxnum = int(input("How many numbers to sort? "))
 
 array = list(range(1, maxnum + 1))
@@ -38,7 +40,7 @@ while True:
     newArr, idx, ddone = sorter.step()
     canvas.pack()
     root.update()
-    sleep(0.25)
+    sleep(delay)
     if ddone:
         drawArray(newArr, canvas, idx, ddone, maxnum)
         canvas.pack()
