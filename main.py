@@ -44,7 +44,7 @@ array = list(range(1, maxnum))
 random.shuffle(array)
 
 sorter = Bubble(array)
-
+#sorter = Bogo(array)
 drawArray(array, canvas, 1, False)
 canvas.pack()
 newArr = array
