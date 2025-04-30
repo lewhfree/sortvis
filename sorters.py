@@ -37,19 +37,27 @@ class Selection:
         self.solved = sorted(toSort[:])
         self.used   = toSort[:]
         self.index  = 0
-        self.sortedIndex = 0
+        self.scan = 1
+        self.mini = 0
 
     def step(self):
-        i = 0
-        for a in self.used[self.index:]:
-            if a < self.used[i]:
-                self.used.insert(0, a)
-                self.used.pop(i)
-            i += 1
-        
-        self.sortedIndex += 1
 
-        if self.solved == self.used:
-            return self.used, self.sortedIndex, True
-        else:
-            return self.used, self.sortedIndex, False
+        if self.index>= len(self.used):
+            return self.used, self.index - 1, True
+        for i in range(1):
+            if self.index >= len(self.used):
+                break
+
+            if self.scan < len(self.used):
+                if self.used[self.scan] < self.used[self.mini]:
+                    self.mini = self.scan
+                self.scan += 1
+
+            else:
+                self.used[self.index], self.used[self.mini] = self.used[self.mini], self.used[self.index]
+                self.index += 1
+                self.scan = self.index + 1
+                self.mini = self.index
+
+        done = bool(self.index >= len(self.used))
+        return self.used, self.index - 1, done
